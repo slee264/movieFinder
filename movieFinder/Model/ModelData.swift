@@ -25,7 +25,7 @@ class ModelData{
     
     init() {
         self.get_display_directors()
-//        self.get_all_directors()
+        self.get_all_directors()
     }
 
     func get_display_directors() {
@@ -110,6 +110,10 @@ class ModelData{
                 DispatchQueue.main.async{
                     if let newMovies = newDirector["movies"] as? [String: [String: Any]]{
                         director.movies = newMovies
+                    }
+                    
+                    if let imageURL = newDirector["imageURL"] as? String{
+                        director.imageURL = imageURL
                     }
                 }
             }

@@ -9,12 +9,20 @@ import Foundation
 import SwiftUI
 
 @Observable
-class Staff: Identifiable {
+class Staff: Identifiable, Hashable {
     
     var id: Int
     var name: String
     var movies: [String : [String: Any]]
     var imageURL: String
+    
+    public static func ==(lhs: Staff, rhs: Staff) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher){
+        return hasher.combine(self.id)
+    }
     
     init(id: Int, name: String, movies: [String: [String: Any]] = [:], imageURL: String = ""){
         self.id = id
